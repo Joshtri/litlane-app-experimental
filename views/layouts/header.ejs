@@ -1,0 +1,61 @@
+
+<link rel="stylesheet" href="/css/navbar.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+<nav class="navbar  navbar-expand-lg navbar-violet">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white fw-semibold" href="#">
+      <img src="/img/bookicon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      LITLANE CMS
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white active" aria-current="page" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Data
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item fw-bold" href="/data/data_buku">Data Buku</a></li>
+            <li><a class="dropdown-item fw-bold" href="/data/data_pelanggan">Data Pelanggan</a></li>
+            <li><a class="dropdown-item fw-bold" href="/data/data_pesanan">Data Pesanan</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled text-white" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex me-5 pe-3">
+      <li class="nav-item dropdown list-unstyled">
+        <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/img/person.png" height="30" width="30" alt="">
+          Profile
+        </a>  
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/my_profile">My Profile</a></li>
+          <li><a class="dropdown-item" href="/mailing">Mail Message</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-confirm">Log Out</a></li>
+        </ul>
+      </li>
+    </div>
+
+  </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+

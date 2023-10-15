@@ -1,0 +1,59 @@
+<!-- Modal jenis paket-->
+<div class="modal fade" id="modalSendMail" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <!-- TOLONG BUATKAN DETAIL DATA DI BAGIAN TENGAH/CENTER -->
+                <h5 class="modal-title text-white" id="exampleModalLabel">Kirim Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form action="/data/" method="POST"> 
+                                              
+                        <div class="mb-1">
+                            <label for="id_transaksi" class="col-form-label" hidden>User ID Pelanggan:</label>
+                            <input type="text" class="form-control" name="id_transaksi" id="id_transaksi" readonly hidden>
+                        </div>
+
+                        <div class="mb-1">
+                            <div class="form-floating">
+                                <select name="" class="form-select" id="">
+                                    <option value="">-</option>
+                                    <% for(let i = 0; i < dataPelanggan.length; i++) { %>
+                                    <option value="<%= dataPelanggan[i].email_pelanggan %>"><%= dataPelanggan[i].email_pelanggan %></option>
+                                    <% } %>
+                                </select>
+                                <label for="">Email Pelanggan</label>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="subjek" class="col-form-label">Subjek Email:</label>
+                            <input type="text" class="form-control" name="subjek" required>
+                            <br>
+                        </div>
+
+                        <div class="mb-1">
+                            <div class="form-floating">
+
+                                <textarea name="isiEmail" class="form-control" rows="4" cols="50" placeholder="vl" required></textarea>
+                                <label for="isiEmail" class="col-form-label">Isi Email:</label>
+                            </div>
+                                
+                        </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Kirim</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+                <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

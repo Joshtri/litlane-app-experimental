@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titlePage %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%-include('layouts/header'); %>
+
+    <style>
+        .pointer {
+            cursor: pointer;
+        }
+
+        .btn-custom-size {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+    </style>
+
+    <div class="container mt-5">
+
+        <% if (notifSuksesInsertGenre) { %>
+            <div class="toast ms-auto fade show animate__animated animate__fadeInRight" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <i class="fa-solid fa-square" style="color: #6892d9;"></i>
+                <strong class="me-auto">Notifikasi</strong>
+                <small><span id="countdown"></span> second ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Berhasil update data mapel
+              </div>
+            </div>
+            
+            <script>
+              // Display the toast when the page loads
+              var toast = new bootstrap.Toast(document.querySelector('.toast'));
+              toast.show();
+          
+              // Redirect to /data/data_guru after a brief delay
+              setTimeout(function() {
+                window.location.href = '/data/tambah_buku';
+              }, 5000); // Change the delay as needed (in milliseconds)
+            </script>
+
+          <% } %>
+
+        <h3 class="text-center">Tambah Data Buku</h3>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item text-primary pointer-event pointer" id="btnKembali"><i class="fa-solid fa-database mx-1 text-dark"></i>Data Buku</li>
+              <li class="breadcrumb-item active" aria-current="page"><i class="fa-solid fa-circle-plus mx-1"></i>Tambah Data Buku</li>
+            </ol>
+        </nav>
+
+        <div class="container-mt-5 pb-4">
+            
+            <div class="card mt-5 shadow shadow-md">
+                <div class="card-body">
+                    <form action="/data/post_buku" method="POST">
+
+                        <div class="row g-3">
+                            
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingPassword" name="judul_buku" placeholder="Password">
+                                <label for="floatingPassword">Judul Buku</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <select name="genre_buku" class="form-select">
+                                    <option value="">-</option>
+                                    <option value="Fiksi">Fiksi</option>
+                                    <option value="Novel">Novel</option>
+
+                                    <% for ( let i = 0 ; i < dataGenre.length; i++) { %>
+                                    <option value="<%= dataGenre[i].genre_buku %>"><%= dataGenre[i].genre_buku %></option>
+                                    <% } %>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="floatingPassword" name="judul_buku" placeholder="Password"> -->
+                                <label for="floatingPassword">Genre Buku</label>
+                            </div>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#modalGenre" class="btn btn-outline-primary btn-custom-size rounded-2 mt-1"><i class="fa-solid fa-square-plus me-1"></i>Genre</button>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingPassword"name="pengarang" placeholder="Password">
+                                <label for="floatingPassword">Pengarang</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingPassword" name="harga" placeholder="Password">
+                                <label for="floatingPassword">Harga</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingPassword"name="stock" placeholder="Password">
+                                <label for="floatingPassword">Stock</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label class="form-label" for="floatingPassword">Upload Cover Book</label>
+                            </div>
+                            <p class="small text-danger">*file berupa .png , .jpg</p>
+                        </div>
+
+                    </div>
+
+                    
+                </div>
+
+                    <div class="card-footer">
+                        <button class="btn-sm btn btn-success">Simpan</button>
+                        <a href="/data/data_buku" class="btn-sm btn btn-outline-danger" >Kembali</a>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade"  id="modalGenre">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Daftar Genre Buku</h4>
+                    <button class="btn-close" data-bs-dismiss="modal"> </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="input-group">
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalAddGenre"><i class="fa-solid fa-square-plus me-1"></i>Add</button>
+                    </div>
+                    
+                    <table class="table text-center">
+                        <thead>
+                            <th>No</th>
+                            <th>Nama Genre</th>
+                            <th>Aksi</th>
+                           
+                        </thead>
+                        <tbody>
+                            <% for ( let i = 0 ; i < dataGenre.length; i++) { %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= dataGenre[i].genre_buku %></td>
+                                <td>
+                                    <a href="#" class="text-decoration-none mx-2 update-button" data-bs-toggle="modal" data-bs-target="#modalUpdateMapel">
+                                        <i class="fa-solid fa-pen-to-square link-offset-2-hover link-opacity-75-hover" style="color: #5B9A8B" data-bs-toggle="tooltip" title="Update"></i>
+                                    </a>
+                        
+                                    <a href="#" data-id="<%= dataGenre[i].id_genre %>" class="text-decoration-none mx-2" data-bs-target="#deleteModal" data-bs-toggle="modal">
+                                        <i class="fa-solid fa-trash-can link-offset-2-hover link-opacity-75-hover" style="color: #C51605" data-bs-toggle="tooltip" title="Delete"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal untuk tambah data genre apabila tidak ada di option tambah genre buku -->
+    <div class="modal fade"  id="modalAddGenre">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Tambah Genre</h4>
+                    <button class="btn-close" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalGenre"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/data/post_genre" method="POST">
+                      
+                    <div class="col-md-8 mx-auto">
+                        <div class="form-floating shadow">
+
+                            <input type="text" class="form-control" name="genre_buku" placeholder="val" required>
+                            <label for="">Genre Buku</label>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="modal-footer">
+                        <div class="me-auto">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalGenre" class="btn btn-outline-danger">Kembali</button>
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <% if(notifSuksesDelete) {%>
+        <!-- Kode HTML untuk modal -->
+        <div class="modal fade" id="successDeleteModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Hapus Data Berhasil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Data Genre berhasil dihapus.
+              </div>  
+              <div class="modal-footer">
+                <a href="/data/tambah_buku">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">OK</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% }%>
+
+    
+
+    <script>
+        const btnKembali = document.getElementById('btnKembali');
+
+
+        btnKembali.addEventListener('click', ()=>{
+
+            window.location.href = '/data/data_buku';
+        });
+
+        $(document).ready(function(){
+            $('#successDeleteModal').modal('show')
+        });
+     
+    </script>
+
+    <script src="/js/countDown.js"></script>
+
+    <%- include('delete/delete_genre'); %>
+</body>
+</html>

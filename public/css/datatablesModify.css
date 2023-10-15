@@ -1,0 +1,43 @@
+/* Mengubah ukuran dan warna latar belakang elemen pencarian */
+.dataTables_filter input {
+    font-size: 12px;
+    background-color: #7c5f5f;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* Mengubah warna teks dalam elemen pencarian */
+.dataTables_filter input[type="search"] {
+    color: #333;
+}
+
+/* Mengubah ukuran tautan halaman di elemen paginasi */
+.dataTables_paginate a {
+    margin-top: 12px;
+    font-size: 14px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/* Mengubah warna latar belakang tombol navigasi */
+.dataTables_paginate .paginate_button {
+    background-color: #f2f2f2;
+    transition: background-color 0.3s;
+}
+
+/* Mengubah warna teks pada tombol halaman aktif */
+.dataTables_paginate .paginate_button.current {
+    color: #333;
+    border-radius: 20%;
+    transition: color 0.3s;
+}
+
+/* Animasi hover pada tautan halaman */
+.dataTables_paginate a:hover {
+    color: #fff; /* Ubah warna teks saat dihover */
+    background-color: #007bff; /* Ubah warna latar belakang saat dihover */
+}
+
+/* Animasi hover pada tombol navigasi */
+.dataTables_paginate .paginate_button:hover {
+    background-color: #007bff; /* Ubah warna latar belakang saat dihover */
+}
